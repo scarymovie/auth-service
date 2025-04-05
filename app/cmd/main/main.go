@@ -22,8 +22,9 @@ func main() {
 
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
-		log.Fatalf("ошибка подключения к БД: %v", err)
+		log.Fatalf("[main] database connection failed: %v", err)
 	}
+	log.Println("[main] database connection opened")
 	defer db.Close()
 
 	if err := db.Ping(); err != nil {
@@ -35,8 +36,9 @@ func main() {
 
 	lis, err := net.Listen("tcp", ":50051")
 	if err != nil {
-		log.Fatalf("ошибка при создании слушателя: %v", err)
+		log.Fatalf("[main] failed to listen: %v", err)
 	}
+	log.Println("[main] gRPC server listening on :50051")
 
 	grpcServer := grpc.NewServer()
 	userServer := server.NewUserServer(userRepo)
