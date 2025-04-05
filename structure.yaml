@@ -1,0 +1,20 @@
+version: 1.0
+serviceName: auth-service
+description: gRPC service for user creation and retrieval
+structure:
+  - app:
+    - cmd:
+        description: "Entry point for the service"
+    - internal:
+        description: "Core business logic"
+        content:
+          - repository: "Data access layer (in-memory / DB in real projects)"
+          - server: "gRPC server implementation"
+    - proto:
+        description: "Protocol Buffers files for gRPC"
+    - go.mod: "Go module definition"
+    - go.sum: "Go dependencies lock file"
+  - docker:
+    - Dockerfile: "Docker build instructions"
+  - README.md: "Project documentation"
+  - structure.yaml: "Project structure description"
